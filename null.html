@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>The Announcer Game™</title>
+    <meta content="The Announcer Game" property="og:title" />
+    <meta content="From the creators of absolutely nothing! Fun for the whole family!" property="og:description" />
+    <meta content="https://announcer-game.notsudake.repl.co" property="og:url" />
+    <meta content="https://cdn.discordapp.com/attachments/763410405346377770/934113489776164934/unknown.png" property="og:image" />
+    <meta content="#00AAFF" data-react-helmet="true" name="theme-color" />
+    
+    <link id="theme" href="dark.css" rel="stylesheet" type="text/css" />
+    <link id="idk" href="common.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <p class="title center" id="title">insert spooky zalgo title here</p>
+    <p id="quote" class="center i">You stand alone at the very end of the Announcer Realm...</p>
+    <p id="playerhp">Your health: <meter min="0" max="100" low="20" high="50" optimum="100" value="100"></meter> (100 HP)</p>
+    <p id="bosshp" style="display: none">Boss health: <meter min="0" max="5000" low="1000" high="3000" optimum="5000" value="5000"></meter> (5000 HP)</p>
+    <p id="coinCount">Announcer coins: 0</p>
+    <button id="challenge" onclick="ohNo()">Challenge the ɹǝɔunouu∀</button>
+    <button id="attack" onclick="go()" style="display: none">Attack!</button>
+    <br><br>
+    <button id="heal" onclick="heal()" style="display: none">Buy small healing potion (1T coins)</button>
+    <button id="heald" onclick="heal1()" style="display: none">Buy healing potion (10T coins)</button>
+    <button id="healp" onclick="heal2()" style="display: none">Buy large healing potion (100T coins)</button>
+    <button id="kill" onclick="suicide()" style="display: none">Literally fucking die</button>
+    <br>
+    <button id="magic" onclick="magic()" style="display: none">Cast magic spell</button>
+    <button id="shield" onclick="shieldf()" style="display: none">Use shield (8x)
+    </button>
+    <br><br>
+    <img id="boss"></img>
+    <script src="nullScript.js"></script>
+    
+  </body>
+</html>
