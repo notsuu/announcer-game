@@ -1,4 +1,5 @@
 # The Announcer Game
 An amazing game about Announcer
 
-*https://announcer-game.notsudake.repl.co*
+*v1 - https://announcer-game.notsudake.repl.co*<br>
+*v2 - https://announcer-game.notsudake.repl.co/v2*
