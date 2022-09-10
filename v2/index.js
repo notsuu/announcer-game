@@ -124,6 +124,11 @@ function update() {
     if (announcer.level >= 150 && currentTab != 3) {tabButtons[3].className = "btn default"; tabButtons[3].innerHTML = "Robux";}
     if (announcer.level >= 200 && currentTab != 4) {tabButtons[4].className = "btn default"; tabButtons[4].innerHTML = "...";}
 }
+
+function updateSettings() {
+    if (settings.autosave) {}
+}
+
 function switchTab(tab) {
     update()
     switch (tab) {
@@ -232,7 +237,7 @@ function load(notify) {
         for (element in settings) {
             let elem = localStorage.getItem(`settings.${element}`)
             if (elem) {
-                if (isNaN(elem)) settings[element] = Boolean(elem);
+                if (typeof elem == "boolean") settings[element] = Boolean(elem);
                 else settings[element] = Number(elem)
             }
             
