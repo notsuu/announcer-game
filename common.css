@@ -3,6 +3,23 @@
   font-size: 30px;
 }
 
+@font-face {
+  font-family: "Segoe UI";
+  src: local("Segoe UI"), url("/assets/fonts/v1.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Segoe UI";
+  src: local("Segoe UI Bold"), url("/assets/fonts/v1bold.ttf") format("truetype");
+  font-weight: bold;
+  
+}
+
+h1, p, a {
+  font-family: "Segoe UI";
+}
+
 .danger {
   color: red
 }

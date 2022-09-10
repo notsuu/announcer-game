@@ -1,0 +1,90 @@
+body {
+    background-color: rgb(15, 15, 15);
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: local("JetBrains Mono"), url("/assets/fonts/v2.ttf") format("truetype");
+}
+
+* {
+    font-family: "JetBrains Mono";
+    color: white;
+}
+
+.btn {
+border-radius: 16px;
+margin-left: 5px;
+margin-right: 5px;
+width: 15em;
+height: 4em;
+text-align: center;
+background-color: rgb(48, 48, 48);
+}
+
+.footer {
+  color: rgb(96,96,96);
+  font-size: 0.75em;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.ach {
+width: 30em;
+border-radius: 16px;
+padding: 10px;
+background-color: rgb(48, 48, 48); 
+}
+
+.btn:hover {
+    background-color: rgb(95, 95, 95);
+    cursor: pointer
+}
+
+.default {
+    border: 5px solid rgb(255, 255, 255);
+}
+
+.on {
+    border: 5px solid rgb(127, 255, 127);
+}
+
+.off {
+    border: 5px solid rgb(255, 127, 127);
+}
+
+.danger {
+    color:rgb(255, 127, 127);
+    font-weight: bold
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    place-content: center;
+}
+
+.idk {
+    margin-left: 20px;
+    margin-right: 20px
+}
+
+.btnLarge {
+    border-radius: 16px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 20em;
+    height: 6em;
+    text-align: center;
+    background-color: rgb(48, 48, 48);
+}
+.btnLarge:hover {
+    background-color: rgb(95, 95, 95);
+    cursor: pointer
+}
+
+
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.05); cursor: pointer;}

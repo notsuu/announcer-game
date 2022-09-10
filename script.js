@@ -237,7 +237,8 @@ function dataExport() {
   let dat = JSON.stringify({ coins: coins, level: level, miners: miners, lastPlayed: lastPlayed, darkMode: darkMode  })
   let exp = utf8_to_b64(dat)
   console.log(exp)
-  document.getElementById("exported").innerHTML = `Exported data: \n${exp}`
+  navigator.clipboard.writeText(exp)
+  alert("Exported to clipboard!")
 }
 
 function dataImport() {
