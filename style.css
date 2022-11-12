@@ -42,6 +42,14 @@ background-color: rgb(48, 48, 48);
     cursor: pointer
 }
 
+.lnk:hover {
+  cursor:pointer;
+}
+
+.hide {
+  display: none
+}
+
 .default {
     border: 5px solid rgb(255, 255, 255);
 }
@@ -84,7 +92,9 @@ background-color: rgb(48, 48, 48);
     cursor: pointer
 }
 
-
+.among {
+  color: black
+}
 
 .grow { transition: all .2s ease-in-out; }
 .grow:hover { transform: scale(1.05); cursor: pointer;}

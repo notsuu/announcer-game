@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>The Announcer Game™</title>
+    <meta content="The Announcer Game" property="og:title" />
+    <meta content="From the creators of absolutely nothing! Fun for the whole family!" property="og:description" />
+    <meta content="https://announcer-game.notsudake.repl.co/old" property="og:url" />
+    <meta content="https://cdn.discordapp.com/attachments/763410405346377770/934113489776164934/unknown.png" property="og:image" />
+    <meta content="#00AAFF" data-react-helmet="true" name="theme-color" />
+    
+    <link id="theme" href="light.css" rel="stylesheet" type="text/css" />
+    <link id="idk" href="common.css" rel="stylesheet" type="text/css" />
+    <script>
+        function toggleTheme() {
+          if (sPurchase > 1) { return; }
+            var theme = document.getElementsByTagName('link')[0];
+            if (theme.getAttribute('href') == 'light.css') {
+                theme.setAttribute('href', 'dark.css');
+                document.getElementById('darkmode').innerHTML = "disable dark mode"
+                darkMode = true
+            } else {
+                theme.setAttribute('href', 'light.css');
+                document.getElementById('darkmode').innerHTML = "enable dark mode"
+                darkMode = false
+            }
+        }
+    </script>
+  </head>
+  <body>
+    <p class="title center" id="title">The Announcer Game™ (v1.7.2)</p>
+    <p id="quote" class="center i">Announcer hasn't said anything yet...</p>
+    <p id="coinCount">Announcer coins: 0</p>
+    <p id="levelCount">Level: 0</p>
+    <p id="autoCount">Auto announcers: 0</p>
+    <button id="announce" onclick="announce()">Announce something (+1 coin)</button>
+    <button id="levelup" onclick="levelUp()">Level up (200 coins)</button>
+    <br>
+    <button id="aabuy" onclick="autoBuy()">Buy auto announcer (75 coins)</button>
+    <button id="aadbuy" onclick="autoBuy1()">Buy 10 auto announcers (750 coins)</button>
+    <button id="aapbuy" onclick="autoBuy2()">Buy 100 auto announcers (7500 coins)</button>
+    <button id="aacbuy" onclick="autoBuy3()">Bulk-buy auto announcers</button>
+    <br>
+    <button id="spbuy1" onclick="spBuy1()" style="display: none">Buy rainbow title (25 million coins)</button>
+    <button id="spbuy2" onclick="spBuy2()" style="display: none">Buy announcer background (50 billion coins)
+      <button id="spbuy3" onclick="spBuy3()" style="display: none">Buy n̷̨͕̤͎̘̞̻̮͑u̶͖̇͗̈́͒͊̓͒̂̾͠͠ľ̷͉̭͔̯̩̙͖͍̓̑͂́͆̈̀̓̊͌̾͘l̵̥̬͕͚̝͔̺͗̑ͅ (1 trillion coins)</button>
+    </button>
+    <br><br>
+    <img id="medal"></img>
+    <div style="position: absolute; bottom: 5px;">
+      <p id="exported"></p>
+      <button id="darkmode" onclick="toggleTheme()">enable dark mode</button>
+      <button id="nullify" style="display: none" onclick="window.location.href='null.html'">???</button>
+      <button id="savebtn" onclick="saveGame()">save game</button>
+      <button id="loadbtn" onclick="loadGame(true)">load game</button>
+      <button id="mgrbtn" onclick="dataExport()">export</button>
+      <button id="mgrbtn2" onclick="dataImport()">import</button>
+      <button id="resetdata" class="danger" onclick="resetData()">reset progress</button>
+      <br><br>
+      <p><a href="https://discord.gg/cfUZtYXqeY" target="_blank" rel="noopener noreferrer">Join the Announcer™ Discord</a> • <a href="javascript:showCredits()">Credits</a> • <a href="/v2/">Return to v2</a></p>
+    </div>
+    <script src="script.js"></script>
+    
+  </body>
+</html>

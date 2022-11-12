@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(15, 15, 15);
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: local("JetBrains Mono"), url("/assets/fonts/v2.ttf") format("truetype");
+}
+
+* {
+    font-family: "JetBrains Mono";
+    color: white;
+}
