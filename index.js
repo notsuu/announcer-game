@@ -16,6 +16,7 @@ function b64_to_utf8( str ) {
 
 var currentTab = 0
 var spacePressed = false
+var visible = true
 
 var announcer = {
     coins: 0,
@@ -57,11 +58,15 @@ var settings = {
     autosave_interval: 60,
     autosave_notify: true,
     enable_sounds: true,
-    abbreviate_numbers: true
+    abbreviate_numbers: true,
+    title_stats: true,
+    new_announcer: false,
 }
 var achievements = {
     unlocked: [],
 }
+
+
 
 function abbreviate(num, fixed, first) {
   if (!settings.abbreviate_numbers) return Math.floor(num);
@@ -141,15 +146,23 @@ document.getElementById("settingsTab")
 function update() {
     let cost = announcer.auto_amount*50+70
     let ucost = (announcer.auto_level-1)*125+150
+  if (settings.new_announcer) {
+    document.getElementById('announcer').src = '/assets/announcer2.png'
+  } else {
+    document.getElementById('announcer').src = '/assets/announcer.png'
+  }
+  if (visible) { document.title = 'Announcer Game' } else {
+    document.title = `${abbreviate(announcer.coins,1)} coins ${announcer.level >= 100 ? `| ${abbreviate(robert.robertium,1)} RBT` : ''}`
+  }
     if (announcer.coins < announcer.levelCost) document.getElementById("levelUpBtn").classList = "btnLarge off"; else document.getElementById("levelUpBtn").classList = "btnLarge on";
     if (announcer.coins < cost) document.getElementById("autoBuyBtn").classList = "btnLarge off"; else document.getElementById("autoBuyBtn").classList = "btnLarge on";
-  if (announcer.coins < ucost || announcer.auto_level >= 30) document.getElementById("autoUpgradeBtn").classList = "btnLarge off"; else document.getElementById("autoUpgradeBtn").classList = "btnLarge on";
+  if (announcer.coins < ucost || announcer.auto_level >= 50) document.getElementById("autoUpgradeBtn").classList = "btnLarge off"; else document.getElementById("autoUpgradeBtn").classList = "btnLarge on";
     document.getElementById("coinCount").innerHTML = `${abbreviate(announcer.coins,1)} coins (+${abbreviate(announcer.auto_amount/announcer.auto_rate,1)}/s)`
     document.getElementById("levelCount").innerHTML = `Level: ${announcer.level}`
   document.getElementById("robertiumCount").innerHTML = `${abbreviate(robert.robertium,1)} RBT`
     document.getElementById("levelUpBtn").innerHTML = `Level up<br>(${abbreviate(announcer.levelCost,1, true)})`
     document.getElementById("autoBuyBtn").innerHTML = `Buy auto announcers<br>(${announcer.auto_amount}, ${abbreviate(cost,1, true)})`
-  if (announcer.auto_level < 30) document.getElementById("autoUpgradeBtn").innerHTML = `Upgrade auto announcer<br>(${announcer.auto_rate}s, ${abbreviate(ucost,1,true)})`; else document.getElementById("autoUpgradeBtn").innerHTML = `Upgrade auto announcer<br>(${announcer.auto_rate}s)`;
+  if (announcer.auto_level < 50) document.getElementById("autoUpgradeBtn").innerHTML = `Upgrade auto announcer<br>(${announcer.auto_rate}s, ${abbreviate(ucost,1,true)})`; else document.getElementById("autoUpgradeBtn").innerHTML = `Upgrade auto announcer<br>(${announcer.auto_rate}s)`;
   document.getElementById("sellRobertBtn").innerHTML = `Sell robertium<br>(${robert.market_value}c/RBT)`
   if (robert.robertium > 0) document.getElementById("sellRobertBtn").classList = "btnLarge on"; else document.getElementById("sellRobertBtn").classList = "btnLarge off";
   document.getElementById("buyComputerBtn").innerHTML = `Buy computer<br>(${robert.computers}, ${abbreviate(robert.cost_computer,1)})`
@@ -215,6 +228,18 @@ function update() {
   } else {
       document.getElementById("numAbbrSettingsBtn").classList = "btn off"
       document.getElementById("numAbbrSettingsBtn").innerHTML = '<b>Number abbreviation</b><br>Disabled'
+  }
+   if (settings.title_stats) { 
+      document.getElementById("titleStatsSettingsBtn").classList = "btn on"
+      document.getElementById("titleStatsSettingsBtn").innerHTML = '<b>Title stats</b><br>Enabled'
+  } else {
+      document.getElementById("titleStatsSettingsBtn").classList = "btn off"
+      document.getElementById("titleStatsSettingsBtn").innerHTML = '<b>Title stats</b><br>Disabled'
+  }
+  if (settings.new_announcer) { 
+      document.getElementById("announcerSettingsBtn").innerHTML = '<b>Announcer</b><br>New'
+  } else {
+      document.getElementById("announcerSettingsBtn").innerHTML = '<b>Announcer</b><br>Old'
   }
 }
 function switchTab(tab) {
@@ -440,7 +465,7 @@ function autoBuy() {
 
 function autoUpgrade() {
   let cost = (announcer.auto_level-1)*125+150
-  if (announcer.auto_level >= 30) {
+  if (announcer.auto_level >= 50) {
     alertify.notify("Max level reached!", "error", 4); return
   }
   if (announcer.coins < cost) {
@@ -605,8 +630,8 @@ window.addEventListener("load", (event) => {
     robertFluctuate()
     robertGridReset()
     robertCycle()
-    if (localStorage['lastVersion'] != document.getElementById('version').innerHTML) {
-      document.getElementById('changelog').className = ""
+    if (localStorage['lastVersion'] != document.getElementById('version').innerHTML && localStorage.getItem('announcer.coins')) {
+      document.getElementById('changelog').className = "changelog"
       localStorage.setItem('lastVersion',document.getElementById('version').innerHTML)
     }
 })
@@ -623,3 +648,40 @@ window.addEventListener('keyup', (event) => {
     spacePressed = false
   }
 })
+
+let hidden;
+let visibilityChange;
+if (typeof document.hidden !== "undefined") {
+  hidden = "hidden";
+  visibilityChange = "visibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+  hidden = "msHidden";
+  visibilityChange = "msvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+  hidden = "webkitHidden";
+  visibilityChange = "webkitvisibilitychange";
+}
+function handleVisibilityChange() {
+  if (document[hidden] && settings.title_stats) {
+    visible = false
+    update()
+  } else {
+    visible = true
+    update()
+  }
+}
+if (typeof document.addEventListener === "undefined" || hidden === undefined) {
+  alertify.notify('Browser does not support Page Visibility API. User stats will not be shown in the tab title.','error',5)
+} else {
+  document.addEventListener(visibilityChange, handleVisibilityChange, false);
+}
+
+if('serviceWorker' in navigator) {
+  console.log("service worker supported")
+  let registration;
+  const registerServiceWorker = async () => {
+    console.log("registering service worker")
+    registration = await navigator.serviceWorker.register('./service_worker.js');
+  };
+  registerServiceWorker();
+}

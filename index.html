@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <!--The industrial revolution has been a disaster for the human race-->
 
 <head>
-  <title>Announcer Game v2</title>
+  <title>Announcer Game</title>
   <link rel="stylesheet" href="style.css">
   <script src="./alertify.min.js"></script>
   <link rel="stylesheet" href="./css/alertify.min.css" />
@@ -14,21 +15,12 @@
 </head>
 
 <body>
-<div id="changelog" class="hide" style="width: 400px; height: 250px; position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%);
-    background-color: 2A2A2A;
-    border: 2px solid white;
-    padding:8px;
-z-index: 9;
-
-">
-  <h2 style="margin-top: 2px;/*! margin-right: 2px; */">v0.5.0</h2>
-<h5 style="margin-top: -16px;color: #808080;margin-bottom: 14px;">November 12, 2022</h5><hr style="/*! margin-top: auto; */">
-<div id="innerChangelog" style="height: 130px;overflow-y:auto">
-+ Added the Marcus Arena<br></div><hr>
+<div id="changelog" class="changelog hide">
+  <h2 style="margin-top: 2px;/*! margin-right: 2px; */">v0.6.2</h2>
+<h5 style="margin-top: -16px;color: #808080;margin-bottom: 14px;">November 21, 2022</h5><hr style="/*! margin-top: auto; */">
+<div id="innerChangelog" style="height: 130px;overflow-y:auto">• Fixed a minor issue with footer positioning
+  
+<br></div><hr>
   <a style="font-size: 12px;" href="/changelog" target="_blank" rel="noopener noreferrer">Older changelogs</a> <a style="font-size: 12px;">•</a> <a class="lnk" onclick="document.getElementById('changelog').className = 'hide'" style="font-size: 12px;"><u>Close window</u></a>
 </div>
   <div class="row" id="announcerStats">
@@ -215,17 +207,24 @@ z-index: 9;
     </center><br>
     <center>
       General<br><br>
-      <button title="Automatically saves your data."  onclick="settings.autosave = !settings.autosave; update()" id="autosaveSettingsBtn"
+      <button title="Automatically save your data every 30 seconds."  onclick="settings.autosave = !settings.autosave; update()" id="autosaveSettingsBtn"
         class="btn on"><b>Autosave</b><br>Enabled</button>
+       <button title="Enable in-game sounds (i.e. achievements)." id="soundSettingsBtn"
+        class="btn on" onclick="settings.enable_sounds = !settings.enable_sounds; update()"><b>Sounds</b><br>Enabled</button>
+      <button title="Your coin (and robertium, if unlocked) count will be shown in the tab title when you're on another tab." id="titleStatsSettingsBtn"
+        class="btn on" onclick="settings.title_stats = !settings.title_stats; update()"><b>Title stats</b><br>Enabled</button>
+    </center><br>
+    <center>
+      Visuals<br><br>
       <button title="Whether or not should you be notified when your data is autosaved." id="autosaveNotifySettingsBtn" onclick="settings.autosave_notify = !settings.autosave_notify; update()"
         class="btn on"><b>Autosave notification</b><br>Enabled</button>
       <button title="Abbreviate numbers to their shorthand form (e.g. 2500 - 2.5K)." id="numAbbrSettingsBtn" onclick="settings.abbreviate_numbers = !settings.abbreviate_numbers; update()"
         class="btn on"><b>Number abbreviation</b><br>Enabled</button>
-      <button title="Enable in-game sounds (i.e. achievements)." id="soundSettingsBtn"
-        class="btn on" onclick="settings.enable_sounds = !settings.enable_sounds; update()"><b>Sounds</b><br>Enabled</button>
+      <button title="Choose the annoucner you'd like to see." id="announcerSettingsBtn" onclick="settings.new_announcer = !settings.new_announcer; update()"
+        class="btn default"><b>Announcer</b><br>New</button>
     </center>
 
   </div>
-  <footer class="footer"><a id="version" style="color: rgb(96,96,96)">v0.5.0</a> • <a class="lnk" onclick="document.getElementById('changelog').className = ''"><u>Changelog</u></a> • <a href="/">Play old version</a></footer>
+  <footer class="footer" id="foot"><a id="version" style="color: rgb(96,96,96)">v0.6.2</a> • <a class="lnk" onclick="document.getElementById('changelog').className = 'changelog'"><u>Changelog</u></a> • <a href="/old">Play old version</a></footer>
 </body>
 <script src="./index.js"></script>

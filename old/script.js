@@ -49,7 +49,14 @@ var autoGet = document.getElementById('aabuy')
 function resetData() {
   let choice = confirm("Are you sure you wanna do that? (There is a very low chance that your pizza permissions will be revoked. I cannot tell you the chance of such thing happening, but just be aware that it might happen.)")
   if (choice) {
-    localStorage.clear()
+    //localStorage.clear() - swapped because this clears v2 data (BAD!!!!!!!!!!)
+    localStorage.removeItem("coins")
+    localStorage.removeItem("level")
+    localStorage.removeItem("miners")
+    localStorage.removeItem("announcers")
+    localStorage.removeItem("darkMode")
+    localStorage.removeItem("sPurchase")
+    localStorage.removeItem("victory")
     location.reload()
   }
 }
@@ -106,22 +113,22 @@ function getMedal(notify) {
   }
   if (level > 99 && level < 200) {
     announcers = 1
-      document.getElementById("medal").src = "assets/bronze.png"
+      document.getElementById("medal").src = "/assets/bronze.png"
       if (notify && level === 100) {alert('You have recieved a bronze medal!')}
   }
   if (level > 199 && level < 300) {
       announcers = 2
-        document.getElementById("medal").src = "assets/silver.png"
+        document.getElementById("medal").src = "/assets/silver.png"
         if (notify && level === 200) {alert('You have recieved a silver medal!')}
     }
   if (level > 299) {
     announcers = 3
-      document.getElementById("medal").src = "assets/gold.png"
+      document.getElementById("medal").src = "/assets/gold.png"
       if (notify && level === 300) {alert('You have recieved a gold medal!')}
   }
   if (vic) {
-    document.getElementById("medal").src = "assets/trophy.png"
-    document.body.style.backgroundImage = "url('./assets/gold.png')";
+    document.getElementById("medal").src = "/assets/trophy.png"
+    document.body.style.backgroundImage = "url('/assets/gold.png')";
   }
 }
 
@@ -147,7 +154,7 @@ function special() {
   if (sPurchase > 0) {
     document.getElementById("title").classList.add("rainbow")
     if (sPurchase > 1) {
-      document.body.style.backgroundImage = "url('./assets/announcer.png')";
+      document.body.style.backgroundImage = "url('/assets/announcer.png')";
       theme.setAttribute('href', 'dark.css');
     document.getElementById('darkmode').innerHTML = "You can't do it anymore."
     

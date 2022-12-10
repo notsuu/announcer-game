@@ -80,7 +80,7 @@ function ohNo() {
   alert("Could it be.. the ɹǝɔunouu∀?")
   alert("...")
   alert("Sure enough, a few moments later, you see him manifest.")
-  document.getElementById("boss").src = "assets/recnuonna.png"
+  document.getElementById("boss").src = "/assets/recnuonna.png"
   document.getElementById("bosshp").style = "display: block"
   document.getElementById("challenge").style = "display: none"
   document.getElementById("attack").style = "display: block"
